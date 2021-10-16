@@ -35,12 +35,12 @@ pm2.Client.launchBus(function(err, bus) {
     const extra_fields = function() {
         if (conf.extra_fields) {
             try {
-                return extra_fields = JSON.parse(conf.extra_fields);
+                return JSON.parse(conf.extra_fields);
             } catch (err) {
                 try {
-                    return extra_fields = eval('(' + conf.extra_fields + ')')
+                    return eval('(' + conf.extra_fields + ')')
                 } catch (err) {
-                    return extra_fields = {_extra_fields:conf.extra_fields}
+                    return {_extra_fields:conf.extra_fields}
                 }
             }
         }
