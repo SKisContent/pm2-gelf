@@ -1,6 +1,6 @@
 {
   "name": "pm2-gelf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PM2 Logging to GELF for GrayLog",
   "main": "app.js",
   "dependencies": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cliv/pm2-gelf.git"
+    "url": "https://github.com/skiscontent/pm2-gelf.git"
   },
   "config": {
     "graylogPort": 12201,
