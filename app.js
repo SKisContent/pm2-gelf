@@ -24,32 +24,36 @@ pm2.Client.launchBus(function(err, bus) {
     bus.on('log:out', function(log) {
         if (log.process.name !== 'pm2-gelf') {
             // console.log(log.process.name, log.data);
-            // Log to gelf
-            var message = {
-                'version': '1.1',
-                'host': hostname,
-                'timestamp': (log.at / 1000),
-                'short_message': log.data,
-                'level': 6,
-                'facility': log.process.name
-            };
-            gelf.emit('gelf.log', message);
+            if (log.data && log.data.indexOf("/health-check") < 0) {
+                // Log to gelf
+                var message = {
+                    'version': '1.1',
+                    'host': hostname,
+                    'timestamp': (log.at / 1000),
+                    'short_message': log.data,
+                    'level': 6,
+                    'facility': log.process.name
+                };
+                gelf.emit('gelf.log', message);
+            }
         }
     });
 
     bus.on('log:err', function(log) {
         if (log.process.name !== 'pm2-gelf') {
             // console.error(log.process.name, log.data);
-            // Log to gelf
-            var message = {
-                'version': '1.1',
-                'host': hostname,
-                'timestamp': (log.at / 1000),
-                'short_message': log.data,
-                'level': 3,
-                'facility': log.process.name
-            };
-            gelf.emit('gelf.log', message);
+            if (log.data && log.data.indexOf("/health-check") < 0) {
+                // Log to gelf
+                var message = {
+                    'version': '1.1',
+                    'host': hostname,
+                    'timestamp': (log.at / 1000),
+                    'short_message': log.data,
+                    'level': 3,
+                    'facility': log.process.name
+                };
+                gelf.emit('gelf.log', message);
+            }
         }
     });
 
