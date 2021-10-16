@@ -1,11 +1,11 @@
 {
   "name": "pm2-gelf",
   "version": "0.0.2",
-  "description": "PM2 Logging to GELF for GrayLog",
+  "description": "PM2 logging to Graylog using GELF messages",
   "main": "app.js",
   "dependencies": {
-    "gelf": "^1.0.3",
-    "pm2": "^2.0.18",
+    "gelf": "^2.0.1",
+    "pm2": "^5.1.2",
     "pmx": "latest"
   },
   "repository": {
@@ -19,6 +19,13 @@
     "maxChunkSizeWan": 1420,
     "maxChunkSizeLan": 8154
   },
+  "apps": [
+    {
+      "merge_logs": true,
+      "max_memory_restart": "200M",
+      "script": "app.js"
+    }
+  ],
   "author": "Charlie Livingston <cliv@ath0.net>",
   "license": "MIT"
 }
